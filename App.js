@@ -27,9 +27,9 @@ export default function App() {
       if (minAge === '' || maxAge === '') return true
 
       if (minAge === '') {
-        return age <= parseInt(maxAge);
+        return age <= parseInt(maxAge) && age > 0;
       } else if (maxAge === '') {
-        return age >= parseInt(minAge);
+        return age >= parseInt(minAge) && age < 199;
       }
 
       return (
@@ -63,7 +63,7 @@ export default function App() {
 
   return (
     <>
-      <View>
+      <View style={styles.containerInput}>
         <TextInput
             value={userName}
             style={styles.input}
@@ -71,9 +71,11 @@ export default function App() {
         />
         <TextInput
           value={minAge}
+          style={styles.input}
           onChangeText={(text) => setMinAge(text)}
         />
         <TextInput
+          style={styles.input}
           value={maxAge}
           onChangeText={(text) => setMaxAge(text)}
         />
@@ -119,6 +121,15 @@ const styles = StyleSheet.create({
     color: '#000'
   },
   input: {
-    marginTop: 30,
+    borderWidth: 1,
+    borderColor: 'black',
+    paddingLeft: 10,
+    paddingRight: 10,
+  },
+  containerInput: {
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    flexDirection: 'row',
   }
 });
